@@ -13,6 +13,23 @@ tokens = (
     'LPAREN',
     'RPAREN',
     'COMMA',
+    'PLUS',
+    'MINUS',
+    'DIVIDE'
+    'MOD',
+    'LAND',
+    'LOR',
+    'LT',
+    'LE',
+    'GT',
+    'GE',
+    
+    
+    
+    
+    
+    
+    
 )#tokens which should be lexed 
 
 t_PLUS = r'\+'
