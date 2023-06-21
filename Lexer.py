@@ -44,6 +44,8 @@ tokens = [
     'OPTION',
     'ARRAY',
     'RECORD',
+    'SOME',
+    'NONE',
 ]
 
 # Reserved keywords
