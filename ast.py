@@ -22,3 +22,7 @@ class MultiplicationNode:
         self.left = left
         self.right = right
 
+class DivideNode:
+    def __init__(self,left,right):
+        self.left =  left
+        self.right  = right
