@@ -22,7 +22,55 @@ class MultiplicationNode:
         self.left = left
         self.right = right
 
+
+class ModuloNode:
+    def __init__(self,left,right):
+        self.left = left
+        self.right = right
+
+
+class GreaterThanNode:
+    def __init__(self,left,right):
+        self.left = left 
+        self.right = right
+
+class LessThanNode:
+    def __init__(self,left,right):
+        self.left = left
+        self.right = right
+
+
+
+class VariableDeclaration:
+    def __init__(self,name,value):
+        self.name =  name
+        self.value = value
+
+
 class DivideNode:
     def __init__(self,left,right):
         self.left =  left
-        self.right  = right
+        self.right = right
+
+class GreaterThanEqualNode:
+    def __init__(self,left,right):
+        self.left =  left
+        self.right = right
+
+class LessThanEqualNode:
+    def __init__(self,left,right):
+        self.left =  left
+        self.right = right
+
+class NotEqualNode:
+    def __init__(self,left,right):
+        self.left = left
+        self.right = right
+
+class FunctionNode:
+    def __init__(self,name,parameters,body):
+        self.name = name
+        self.parameters = parameters
+        self.body = body
+
+
