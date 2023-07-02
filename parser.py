@@ -2,6 +2,7 @@ import ply.yacc as yacc
 from lexer import tokens
 from ast import *
 from table import SymbolTable
+from functiontable import *
 symbol = SymbolTable()
 
 precedence = (
