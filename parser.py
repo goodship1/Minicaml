@@ -2,8 +2,10 @@ import ply.yacc as yacc
 from lexer import tokens
 from ast import *
 from table import SymbolTable
-from functiontable import *
+from functable import FunctionSymbolTable 
+
 symbol = SymbolTable()
+function =  FunctionSymbolTable()
 
 precedence = (
     ('left', 'PLUS', 'MINUS'),
@@ -125,6 +127,26 @@ def p_parameter(p):
     else:
         p[0] = [p[1]] + p[3]
 
+def p_expression_variable_declaration(p):
+		'''expression : LET IDENTIFIER EQUAL expression'''
+		variable_name = p[2]
+		variable_value = p[4]
+		symbol.add_variable(variable_name, variable_value)
+		p[0] = VariableDeclaration(variable_name,variable_value) 
+
+	
+
+
+def p_function_declaration(p):
+    '''expression : LET IDENTIFIER  parameter_list EQUAL expression'''
+    func_name =  p[2]
+    parameters = p[3]
+    code_block  = p[5]
+    function.add_function(func_name,parameters,code_block)
+    p[0] = FunctionNode(func_name,parameters,code_block)
+
+
+
 
 
 # Error handling
@@ -132,10 +154,10 @@ def p_error(p):
     print("Syntax error:", p)
 
 # Build the parser
-parser = yacc.yacc()
+parser = yacc.yacc(start = "expression")
 
 # Test the parser
-data = "let add a,b  = a + b"
+data = "let add x , y =  x + y" 
 
 result = parser.parse(data)
 print(result)
