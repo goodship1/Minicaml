@@ -27,6 +27,12 @@ def p_expression_identifier(p):
     '''expression : IDENTIFIER'''
     p[0] = VariableDeclarationNode(p[1], None)
 
+
+def p_expression_statement(p):
+    '''statement : expression
+                 | if_statement'''
+    p[0] = p[1]
+
 def p_expression_integer(p):
     '''expression : INTEGER'''
     p[0] = IntegerLiteralNode(p[1])
@@ -82,7 +88,7 @@ def p_expression_binary_operation(p):
     elif p[2] == '>=':
         p[0] = GreaterThanEqualNode(p[1], p[3])
 
-def p_expression_list(p):
+def p_list(p):
     '''expression : LBRACKET expression_list RBRACKET'''
     p[0] = LisstNode(p[2])
 
@@ -106,17 +112,25 @@ def p_parameter_list(p):
     else:
         p[0] = [p[1]] + p[3]
 
-def p_expression_list(p):
-    '''expression_list : expression
-                       | expression COMMA expression_list'''
-    if len(p) == 2:
-        p[0] = [p[1]]
-    else:
-        p[0] = [p[1]] + p[3]
+
 
 def p_expression_function_declaration(p):
     '''expression : LET IDENTIFIER parameter_list EQUAL FUNCTION expression'''
     p[0] = FunctionNode(p[2], p[3], p[6])
+
+
+
+
+def p_expression_list(p):
+    '''expression_list : expression
+                       | expression COMMA expression_list'''
+    if len(p) == 2:
+        p[0] = ExpressionListNode([p[1]])
+    else:
+        p[0] = ExpressionListNode([p[1]] + p[3])
+
+
+
 
 
 def p_parameter(p):
@@ -162,6 +176,11 @@ def p_record_field(p):
 def p_expression_record(p):
     '''expression : LBRACE record_fields RBRACE'''
     p[0] = RecordNode(p[2])
+
+def p_if_then_expression(p):
+    '''if_statement : IF expression THEN statement'''
+    p[0] = IfStatementNode(p[2],p[4])
+
 
 
 # Error handling
