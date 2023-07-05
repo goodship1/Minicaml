@@ -2,10 +2,26 @@ class ProgramNode:
     def __init__(self, statements):
         self.statements = statements
 
+class ListNode:
+    def __init__(self,elements):
+        self.elements = elements
+
+class RecordNode:
+    def __init__(self,fields):
+        self.fields =  fields
+
+
+
 class VariableDeclarationNode:
     def __init__(self, name, value):
         self.name = name
         self.value = value
+
+class IntegerLiteralNode:
+      def __init__(self,value):
+         self.value =  value
+	
+
 
 class AdditionNode:
     def __init__(self, left, right):
