@@ -90,7 +90,7 @@ def p_expression_binary_operation(p):
 
 def p_list(p):
     '''expression : LBRACKET expression_list RBRACKET'''
-    p[0] = LisstNode(p[2])
+    p[0] = ListNode(p[2])
 
 def p_expression_function_call(p):
     '''expression : IDENTIFIER LPAREN expression_list RPAREN'''
@@ -130,6 +130,9 @@ def p_expression_list(p):
         p[0] = ExpressionListNode([p[1]] + p[3])
 
 
+
+
+
 def p_parameter(p):
     '''parameter : IDENTIFIER
                  | IDENTIFIER COMMA parameter'''
@@ -146,7 +149,10 @@ def p_expression_variable_declaration(p):
 		p[0] = VariableDeclaration(variable_name,variable_value) 
 
 	
-
+def p_type(p):
+    '''type : LIST
+            | RECORD'''
+    p[0] = p[1]
 
 
 def p_function_declaration(p):
@@ -192,3 +198,4 @@ data = "let add x , y =  x + y"
 
 result = parser.parse(data)
 print(result)
+
