@@ -82,7 +82,7 @@ def p_expression_binary_operation(p):
     elif p[2] == '>=':
         p[0] = GreaterThanEqualNode(p[1], p[3])
 
-def p_expression_group(p):
+def p_expression_list(p):
     '''expression : LBRACKET expression_list RBRACKET'''
     p[0] = LisstNode(p[2])
 
@@ -147,10 +147,21 @@ def p_function_declaration(p):
     p[0] = FunctionNode(func_name,parameters,code_block)
 
 
+def p_record_fields(p):
+    '''record_fields : record_field
+                     | record_field COMMA record_fields'''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = [p[1]] + p[3]
 
+def p_record_field(p):
+    '''record_field : IDENTIFIER COLON expression'''
+    p[0] = (p[1], p[3]) 
 
-
-
+def p_expression_record(p):
+    '''expression : LBRACE record_fields RBRACE'''
+    p[0] = RecordNode(p[2])
 
 
 # Error handling
