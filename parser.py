@@ -137,6 +137,7 @@ def p_expression_variable_declaration(p):
 	
 
 
+
 def p_function_declaration(p):
     '''expression : LET IDENTIFIER  parameter_list EQUAL expression'''
     func_name =  p[2]
@@ -144,8 +145,6 @@ def p_function_declaration(p):
     code_block  = p[5]
     function.add_function(func_name,parameters,code_block)
     p[0] = FunctionNode(func_name,parameters,code_block)
-
-
 
 
 
