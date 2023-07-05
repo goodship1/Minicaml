@@ -83,8 +83,8 @@ def p_expression_binary_operation(p):
         p[0] = GreaterThanEqualNode(p[1], p[3])
 
 def p_expression_group(p):
-    '''expression : LPAREN expression RPAREN'''
-    p[0] = p[2]
+    '''expression : LBRACKET expression_list RBRACKET'''
+    p[0] = LisstNode(p[2])
 
 def p_expression_function_call(p):
     '''expression : IDENTIFIER LPAREN expression_list RPAREN'''
@@ -145,6 +145,11 @@ def p_function_declaration(p):
     code_block  = p[5]
     function.add_function(func_name,parameters,code_block)
     p[0] = FunctionNode(func_name,parameters,code_block)
+
+
+
+
+
 
 
 
